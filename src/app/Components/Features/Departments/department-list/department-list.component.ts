@@ -1,6 +1,7 @@
 import { DepartmentService } from './../Services/department.service';
 import { Component, OnInit } from '@angular/core';
 import { Department } from '../Models/Department.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-department-list',
@@ -10,11 +11,12 @@ import { Department } from '../Models/Department.model';
 export class DepartmentListComponent implements OnInit {
 
   departments: Department[] = [];
+  getAllDeptSubscription?: Subscription;
 
   constructor(private departmentService: DepartmentService) { }
 
   ngOnInit(): void {
-    this.departmentService.getAllDepartment().subscribe({
+    this.getAllDeptSubscription = this.departmentService.getAllDepartment().subscribe({
       next: res => {
         if (res) {
           this.departments = res;
@@ -24,6 +26,10 @@ export class DepartmentListComponent implements OnInit {
         console.log(err);
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.getAllDeptSubscription?.unsubscribe();
   }
 
 

@@ -11,6 +11,7 @@ import { EmployeeUpdateComponent } from './Components/Features/Employees/employe
 import { FormsModule } from '@angular/forms';
 import { DepartmentListComponent } from './Components/Features/Departments/department-list/department-list.component';
 import { PositionListComponent } from './Components/Features/Positions/position-list/position-list.component';
+import { HomeComponent } from './Components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PositionListComponent } from './Components/Features/Positions/position-
     EmployeeAddComponent,
     EmployeeUpdateComponent,
     DepartmentListComponent,
-    PositionListComponent
+    PositionListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
