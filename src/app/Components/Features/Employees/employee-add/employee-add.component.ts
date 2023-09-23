@@ -30,7 +30,7 @@ export class EmployeeAddComponent implements OnInit {
   }
 
   OnSubmit() {
-    this.employeeService.createEmployee(this.model).subscribe({
+    this.addEmployeeSubscription = this.employeeService.createEmployee(this.model).subscribe({
       next: res => {
         this.displayAlert = true;
         setTimeout(() => {
@@ -39,6 +39,10 @@ export class EmployeeAddComponent implements OnInit {
         }, 2000);
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.addEmployeeSubscription?.unsubscribe();
   }
 
 }
