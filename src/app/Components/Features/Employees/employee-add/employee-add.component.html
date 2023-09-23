@@ -1,0 +1,43 @@
+<div class="container">
+    <h1 class="mt-3">Add New Employee Details</h1>
+
+    <div *ngIf="displayAlert" class="alert alert-success" role="alert">
+        New Employee Added Successfully!
+    </div>
+
+    <form #form="ngForm" (submit)="OnSubmit()">
+        <div class="mt-2">
+            <div class="mt-3">
+                <label class="form=label mb-1" for="firstName">First Name</label>
+                <input type="text" id="firstName" class="form-control" name="firstName" [(ngModel)]="model.firstName">
+            </div>
+
+            <div class="mt-3">
+                <label class="form=label mb-1" for="lastName">Last Name</label>
+                <input type="text" id="lastName" class="form-control" name="lastName" [(ngModel)]="model.lastName">
+            </div>
+
+            <div class="mt-3">
+                <label class="form=label mb-1" for="dateOfBirth">Date of Birth</label>
+                <input type="date" id="dateOfBirth" class="form-control" name="dateOfBirth"
+                    [(ngModel)]="model.dateOfBirth">
+            </div>
+
+            <div class="mt-3">
+                <label class="form=label mb-1" for="departmentId">Department ID</label>
+                <input type="text" id="departmentId" class="form-control" name="departmentId"
+                    [(ngModel)]="model.departmentId">
+            </div>
+
+            <div class="mt-3">
+                <label class="form=label mb-1" for="positionId">Position ID</label>
+                <input type="text" id="positionId" class="form-control" name="positionId"
+                    [(ngModel)]="model.positionId">
+            </div>
+
+            <div class="mt-3">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

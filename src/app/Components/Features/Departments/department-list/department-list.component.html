@@ -1,0 +1,30 @@
+<div class="container">
+    <h1 class="mt-3">Data Available in Department Table</h1>
+
+    <!-- <div class="d-flex justify-content-end my-3">
+        <a [routerLink]="[]" class="btn btn-primary">Add Employee</a>
+    </div> -->
+
+    <div *ngIf="departments.length <= 0" class="alert alert-primary text-center" role="alert">
+        No Data Available
+    </div>
+
+    <ng-container *ngIf="departments && departments.length > 0">
+        <table class="table table-success table-striped table-hover mt-3">
+            <thead>
+                <tr>
+                    <th>Department Id</th>
+                    <th>Department Name</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let dept of departments">
+                    <td>{{dept.departmentId}}</td>
+                    <td>{{dept.departmentName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+    <router-outlet></router-outlet>
+</div>

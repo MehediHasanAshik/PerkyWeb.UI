@@ -1,0 +1,92 @@
+<div class="container">
+    <h1 class="mt-3">Add New Employee Details</h1>
+
+    <div *ngIf="displayAlert" class="alert alert-success text-center" role="alert">
+        Category Updated Successfully!
+    </div>
+
+    <div *ngIf="isDeleted" class="alert alert-danger" role="alert">
+        Category Deleted Successfully!
+    </div>
+
+    <ng-template #notFound>
+        <div class="alert alert-danger" role="alert">
+            NO Employees FOUND
+        </div>
+    </ng-template>
+
+    <ng-container *ngIf="employees; else notFound">
+        <form #form="ngForm" (submit)="OnUpdate()">
+            <div class="mt-2">
+                <div class="mt-3">
+                    <label class="form=label mb-1" for="employeeId">Employee ID</label>
+                    <input type="text" id="employeeId" class="form-control" name="employeeId"
+                        value={{employees.employeeId}} readonly disabled>
+                </div>
+
+                <div class="mt-3">
+                    <label class="form=label mb-1" for="firstName">First Name</label>
+                    <input type="text" id="firstName" class="form-control" name="firstName"
+                        [(ngModel)]="employees.firstName">
+                </div>
+
+                <div class="mt-3">
+                    <label class="form=label mb-1" for="lastName">Last Name</label>
+                    <input type="text" id="lastName" class="form-control" name="lastName"
+                        [(ngModel)]="employees.lastName">
+                </div>
+
+                <div class="mt-3">
+                    <label class="form=label mb-1" for="dateOfBirth">Date of Birth</label>
+                    <input type="date" id="dateOfBirth" class="form-control" name="dateOfBirth"
+                        value="{{employees.dateOfBirth}}" [ngModel]="employees.dateOfBirth | date: 'yyy-MM-dd'"
+                        (ngModelChange)="employees.dateOfBirth = $event">
+                </div>
+
+                <div class="mt-3">
+                    <label class="form-label mb-1" for="departmentId">Available Departments IDs(from database)</label>
+                    <select id="departmentId" class="form-select" name="departmentId" value="{{employees.departmentId}}"
+                        [ngModel]="employees.departmentId" (ngModelChange)="employees.departmentId = $event">
+                        <option *ngFor="let dId of employees.departmentIds" [value]="dId">{{dId}}</option>
+                    </select>
+                </div>
+
+                <div class="mt-3">
+                    <label class="form=label mb-1" for="positionId">Available Positions IDs(from database)</label>
+                    <select id="positionId" class="form-select" name="positionId" value="{{employees.positionId}}"
+                        [ngModel]="employees.positionId" (ngModelChange)="employees.positionId = $event">
+                        <option *ngFor="let pId of employees.positionIds" [value]="pId">{{pId}}</option>
+                    </select>
+                </div>
+
+                <div class="mt-3">
+                    <button class="btn btn-primary" type="submit">Update</button>
+                    <button class="btn btn-danger mx-3" type="button" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Delete</button>
+                </div>
+            </div>
+        </form>
+    </ng-container>
+
+    <div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-danger" id="exampleModalLabel">!! WARNING !!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Do You Really Want to Delete The Category?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                            (click)="OnDelete()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
